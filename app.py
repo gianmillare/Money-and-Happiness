@@ -48,3 +48,5 @@ st.text('-----------------------------------------------------------------------
 # Question 1: Are financially stable people more satisfied with life?
 st.markdown("### Are financially stable people more satisfied with life?")
 st.text("In this section, I divide people with life satisfaction ratings 5+ from people <=3. Then I look at how they rate their financial stability.")
+
+unsatisfied = data.loc[data['SWB_1'] <= 3]
