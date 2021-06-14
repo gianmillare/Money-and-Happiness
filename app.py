@@ -37,10 +37,14 @@ ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', colors=colors, 
 ax.set_title('"I am satisfied with life"', fontsize=35,fontweight='bold')
 ax.axis('equal')
 
-plt.rcParams.update({'font.size': 22})
+plt.rcParams.update({'font.size': 30})
 plt.tight_layout()
 plt.show()
 st.pyplot(fig)
 
 st.markdown("Thankfully, it seems that most people (~77%) in this sample are at least slightly satisfied with life.")
 st.text('---------------------------------------------------------------------------------')
+
+# Question 1: Are financially stable people more satisfied with life?
+st.markdown("### Are financially stable people more satisfied with life?")
+st.text("In this section, I divide people with life satisfaction ratings 5+ from people <=3. Then I look at how they rate their financial stability.")
