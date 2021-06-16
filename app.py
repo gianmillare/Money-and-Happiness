@@ -32,7 +32,7 @@ sizes = [satisfaction_ratings['1'], satisfaction_ratings['2'], satisfaction_rati
 explode = (0,0,0,0,0,0.15,0)
 colors = ['bisque','burlywood','goldenrod','limegreen','slategray','skyblue','royalblue']
 
-fig, ax = plt.subplots(figsize =(20, 15))
+fig1, ax = plt.subplots(figsize =(20, 15))
 ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', colors=colors, shadow=True, startangle=90)
 ax.set_title('"I am satisfied with life"', fontsize=35,fontweight='bold')
 ax.axis('equal')
@@ -40,13 +40,46 @@ ax.axis('equal')
 plt.rcParams.update({'font.size': 30})
 plt.tight_layout()
 plt.show()
-st.pyplot(fig)
+st.pyplot(fig1)
 
 st.markdown("Thankfully, it seems that most people (~77%) in this sample are at least slightly satisfied with life.")
 st.text('---------------------------------------------------------------------------------')
 
 # Question 1: Are financially stable people more satisfied with life?
 st.markdown("### Are financially stable people more satisfied with life?")
-st.text("In this section, I divide people with life satisfaction ratings 5+ from people <=3. Then I look at how they rate their financial stability.")
+st.text("In this section, I divide people with life satisfaction ratings 5+ from people <=3. Then I \nlook at how they rate their financial stability.")
 
-unsatisfied = data.loc[data['SWB_1'] <= 3]
+# Strongly Unsatisfied
+strongly_unsatisfied = data.loc[data['SWB_1'] == 1]
+average_fwb_1 = strongly_unsatisfied['FWBscore'].mean()
+# Unsatisfied
+unsatisfied = data.loc[data['SWB_1'] == 2]
+average_fwb_2 = unsatisfied['FWBscore'].mean()
+# Slightly Unsatisfied
+slightly_unsatisfied = data.loc[data['SWB_1'] == 3]
+average_fwb_3 = slightly_unsatisfied['FWBscore'].mean()
+# Slightly Satisfied
+slightly_satisfied = data.loc[data['SWB_1'] == 5]
+average_fwb_5 = slightly_satisfied['FWBscore'].mean()
+# Satisfied
+satisfied = data.loc[data['SWB_1'] == 6]
+average_fwb_6 = satisfied['FWBscore'].mean()
+# Strongly Satisfied
+strongly_satisfied = data.loc[data['SWB_1'] == 7]
+average_fwb_7 = strongly_satisfied['FWBscore'].mean()
+
+labels = 'Strongly Unsatisfied', 'Unsatisfied', 'Slightly Unsatisfied', 'Slightly Satisfied', 'Satisfied', 'Strongly Satisfied'
+average_fwb = [average_fwb_1, average_fwb_2, average_fwb_3, average_fwb_5, average_fwb_6, average_fwb_7]
+y_pos = np.arange(len(labels))
+
+fig2, ax = plt.subplots(figsize =(15, 10))
+
+y_pos = np.arange(len(labels))
+ax.barh(y_pos, average_fwb, align='center')
+ax.set_yticks(y_pos)
+ax.set_yticklabels(labels)
+ax.set_xlabel('Average FWB Score')
+ax.set_title('Average Financial Well-Being Score by Satisfaction')
+plt.show()
+
+st.pyplot(fig2)
