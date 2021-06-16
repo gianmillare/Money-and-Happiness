@@ -77,9 +77,19 @@ fig2, ax = plt.subplots(figsize =(15, 10))
 y_pos = np.arange(len(labels))
 ax.barh(y_pos, average_fwb, align='center')
 ax.set_yticks(y_pos)
-ax.set_yticklabels(labels)
-ax.set_xlabel('Average FWB Score')
-ax.set_title('Average Financial Well-Being Score by Satisfaction')
+ax.set_yticklabels(labels, fontsize=15)
+ax.set_xlabel('Average FWB Score', fontsize=15)
+ax.set_title('Average Financial Well-Being Score by Satisfaction', fontsize=25)
+for index, value in enumerate(average_fwb):
+    plt.text(value, index,
+             " " + str(round(value)), fontweight='bold', fontsize=18)
+
+plt.tick_params(
+    axis='x',          
+    which='both',      
+    bottom=False,      
+    top=False,         
+    labelbottom=False)
 plt.show()
 
 st.pyplot(fig2)
