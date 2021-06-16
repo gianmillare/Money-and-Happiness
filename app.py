@@ -54,49 +54,53 @@ st.text("In this section, I divide people with life satisfaction ratings 5+ from
         "\n- I am concerned that the money I have or will save won’t last"
         "\n- etc.")
 
-# Strongly Unsatisfied
-strongly_unsatisfied = data.loc[data['SWB_1'] == 1]
-average_fwb_1 = strongly_unsatisfied['FWBscore'].mean()
-# Unsatisfied
-unsatisfied = data.loc[data['SWB_1'] == 2]
-average_fwb_2 = unsatisfied['FWBscore'].mean()
-# Slightly Unsatisfied
-slightly_unsatisfied = data.loc[data['SWB_1'] == 3]
-average_fwb_3 = slightly_unsatisfied['FWBscore'].mean()
-# Slightly Satisfied
-slightly_satisfied = data.loc[data['SWB_1'] == 5]
-average_fwb_5 = slightly_satisfied['FWBscore'].mean()
-# Satisfied
-satisfied = data.loc[data['SWB_1'] == 6]
-average_fwb_6 = satisfied['FWBscore'].mean()
-# Strongly Satisfied
-strongly_satisfied = data.loc[data['SWB_1'] == 7]
-average_fwb_7 = strongly_satisfied['FWBscore'].mean()
+average_fwb_1 = data.loc[data['SWB_1'] == 1]['FWBscore'].mean()
+average_fwb_2 = data.loc[data['SWB_1'] == 2]['FWBscore'].mean()
+average_fwb_3 = data.loc[data['SWB_1'] == 3]['FWBscore'].mean()
+average_fwb_5 = data.loc[data['SWB_1'] == 5]['FWBscore'].mean()
+average_fwb_6 = data.loc[data['SWB_1'] == 6]['FWBscore'].mean()
+average_fwb_7 = data.loc[data['SWB_1'] == 7]['FWBscore'].mean()
+fwb_scores = [average_fwb_1, average_fwb_2, average_fwb_3, average_fwb_5, average_fwb_6, average_fwb_7]
+print(fwb_scores)
 
-labels = 'Strongly Unsatisfied', 'Unsatisfied', 'Slightly Unsatisfied', 'Slightly Satisfied', 'Satisfied', 'Strongly Satisfied'
-average_fwb = [average_fwb_1, average_fwb_2, average_fwb_3, average_fwb_5, average_fwb_6, average_fwb_7]
-y_pos = np.arange(len(labels))
+fs_score_1 = data.loc[data['SWB_1'] == 1]['FSscore'].mean()
+fs_score_2 = data.loc[data['SWB_1'] == 2]['FSscore'].mean()
+fs_score_3 = data.loc[data['SWB_1'] == 3]['FSscore'].mean()
+fs_score_5 = data.loc[data['SWB_1'] == 5]['FSscore'].mean()
+fs_score_6 = data.loc[data['SWB_1'] == 6]['FSscore'].mean()
+fs_score_7 = data.loc[data['SWB_1'] == 7]['FSscore'].mean()
+fs_scores = [fs_score_1, fs_score_2, fs_score_3, fs_score_5, fs_score_6, fs_score_7]
+print(fs_scores)
 
-fig2, ax = plt.subplots(figsize =(15, 10))
+lm_score_1 = data.loc[data['SWB_1'] == 1]['LMscore'].mean()
+lm_score_2 = data.loc[data['SWB_1'] == 2]['LMscore'].mean()
+lm_score_3 = data.loc[data['SWB_1'] == 3]['LMscore'].mean()
+lm_score_5 = data.loc[data['SWB_1'] == 5]['LMscore'].mean()
+lm_score_6 = data.loc[data['SWB_1'] == 6]['LMscore'].mean()
+lm_score_7 = data.loc[data['SWB_1'] == 7]['LMscore'].mean()
+lm_scores = [lm_score_1, lm_score_2, lm_score_3, lm_score_5, lm_score_6, lm_score_7]
+print(lm_scores)
 
-y_pos = np.arange(len(labels))
-ax.barh(y_pos, average_fwb, align='center')
-ax.set_yticks(y_pos)
-ax.set_yticklabels(labels, fontsize=15)
-ax.set_xlabel('Average FWB Score', fontsize=15)
-ax.set_title('Average Financial Well-Being Score by Satisfaction', fontsize=25)
-for index, value in enumerate(average_fwb):
-    plt.text(value, index,
-             " " + str(round(value)), fontweight='bold', fontsize=18)
+labels = ['Strongly Unsatisfied', 'Unsatisfied', 'Slightly Unsatisfied', 'Slightly Satisfied', 
+          'Satisfied', 'Strongly Satisfied']
 
-plt.tick_params(
-    axis='x',          
-    which='both',      
-    bottom=False,      
-    top=False,         
-    labelbottom=False)
+# x = fwb_scores, fs_scores
+
+x = np.arange(len(labels))  # the label locations
+width = 0.35  # the width of the bars
+
+fig2, ax = plt.subplots(figsize=(15,10))
+rects1 = ax.bar(x - width/2, fwb_scores, width, label='Financial Well-Being', color='skyblue')
+rects2 = ax.bar(x + width/2, fs_scores, width, label='Financial Skill', color='gray')
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+ax.set_ylabel('Average Scores\n', fontsize=15)
+ax.set_title('Average Scores by Life Satisfaction', fontsize=25)
+ax.set_xticks(x)
+ax.set_xticklabels(labels, fontsize=15)
+ax.legend(fontsize=15)
+plt.tight_layout()
 plt.show()
-
 st.pyplot(fig2)
 
 st.text("According to the chart above, as the average financial well-being score increased, the \nlife-satisfaction rating also increased."
