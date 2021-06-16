@@ -101,3 +101,5 @@ st.pyplot(fig2)
 
 st.text("According to the chart above, as the average financial well-being score increased, the \nlife-satisfaction rating also increased."
         " In other words, people who were more financially \nstable and financially conscious were happier with their lives.")
+
+st.text('---------------------------------------------------------------------------------')
