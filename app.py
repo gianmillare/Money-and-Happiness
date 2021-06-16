@@ -45,13 +45,18 @@ st.pyplot(fig1)
 st.markdown("Thankfully, it seems that most people (~77%) in this sample are at least slightly satisfied with life.")
 st.text('---------------------------------------------------------------------------------')
 
-# Question 1: Are financially stable people more satisfied with life?
+# Question 1: Are financially responsbile people more satisfied with life?
 st.markdown("### Are financially stable people more satisfied with life?")
-st.text("In this section, I divide people with life satisfaction ratings 5+ from people <=3. Then I \nlook at how they rate their financial stability."
-        " The Financial Well-Being score for each \nrespondent was based on the score (1-4) given to questions like:"
+st.text("In this section, I divide people with life satisfaction ratings 5+ from people <=3. Then I \nlook at how they rate their financial stability.")
+st.text(" The Financial Well-Being score for each respondent was based on the score (1-4) given to \nquestions like:"
         "\n- I could handle a major unexpected expense"
         "\n- I can enjoy life because of the way I’m managing my money"
         "\n- I am concerned that the money I have or will save won’t last"
+        "\n- etc.")
+st.text(" The Financial skill score for each respondent was based on the score (1-5) given to \nquestions like:"
+        "\n- I know how to make complex financial decisions"
+        "\n- I am able to recognize a good financial investment"
+        "\n- I know how to keep myself from spending too much"
         "\n- etc.")
 
 average_fwb_1 = data.loc[data['SWB_1'] == 1]['FWBscore'].mean()
@@ -105,7 +110,30 @@ plt.grid(color='slategrey', linestyle='--')
 plt.show()
 st.pyplot(fig2)
 
-st.text("According to the chart above, as the average financial well-being score increased, the \nlife-satisfaction rating also increased."
-        " In other words, people who were more financially \nstable and financially conscious were happier with their lives.")
+st.text("According to the chart above, as the average financial well-being and Financial Skills \nscore increased, the life-satisfaction rating also increased."
+        " In other words, people who \nwere more financially stable and financially conscious were happier with their lives.")
 
 st.text('---------------------------------------------------------------------------------')
+
+# Question 2: Are financially literate/educated people more satisfied with life?
+st.markdown("### Are financially literate/educated people more satisfied with life?")
+st.text("It is one thing to be financially conscious and responsible, but nowadays, to reach \nfinancial freedom, a level of financial education may be required.")
+st.text("A common test of financial education is the Lusardi Mitchell Financial Literacy Test. \nThis survey recorded responses to that test.")
+
+labels = ['Strongly Unsatisfied', 'Unsatisfied', 'Slightly Unsatisfied', 'Slightly Satisfied', 
+          'Satisfied', 'Strongly Satisfied']
+# lm_scores
+fig3, ax = plt.subplots(figsize=(15, 12))
+
+ax.set_yticklabels(labels, fontsize=15)
+ax.set_title("Lusardi and Mitchell Financial Literacy Score", fontsize=25)
+plt.barh(labels, lm_scores, color='skyblue')
+plt.grid(color='slategrey', linestyle='--', axis='x')
+
+for i, j in enumerate(lm_scores):
+    plt.text(j,i, " " + str(round(j, 2)), fontsize=15)
+    
+plt.show()
+st.pyplot(fig3)
+
+st.text("According to the chart above, there is no significant disparity between unsatisfied and satisfied respondents to their financial skill.")
