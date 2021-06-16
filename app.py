@@ -99,7 +99,9 @@ ax.set_title('Average Scores by Life Satisfaction', fontsize=25)
 ax.set_xticks(x)
 ax.set_xticklabels(labels, fontsize=15)
 ax.legend(fontsize=15)
-plt.tight_layout()
+ax.set_facecolor('whitesmoke')
+plt.grid(color='slategrey', linestyle='--')
+
 plt.show()
 st.pyplot(fig2)
 
