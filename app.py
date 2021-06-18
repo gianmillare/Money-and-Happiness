@@ -136,4 +136,4 @@ for i, j in enumerate(lm_scores):
 plt.show()
 st.pyplot(fig3)
 
-st.text("According to the chart above, there is no significant disparity between unsatisfied and satisfied respondents to their financial skill.")
+st.text("According to the chart above, there is no significant disparity between unsatisfied and \nsatisfied respondents to their financial skill.")
