@@ -10,4 +10,3 @@ Data Credit: [National Financial Well-Being Survey](https://www.consumerfinance.
 
 ![](images/1.png)
 ![](images/2.png)
-![](images/3.png)
