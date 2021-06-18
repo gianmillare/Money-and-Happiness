@@ -7,3 +7,7 @@ More importantly, this project was used to test the skills I picked up from the 
 Data Credit: [National Financial Well-Being Survey](https://www.consumerfinance.gov/data-research/financial-well-being-survey-data/)
 
 <hr>
+
+![](images/1.png)
+![](images/2.png)
+![](images/3.png)
